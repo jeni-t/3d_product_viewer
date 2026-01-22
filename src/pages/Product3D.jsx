@@ -8,19 +8,28 @@ import ColorPalette from "./ColorPalette"
 const TARGET_MODEL_SIZE = 15; // Define a consistent target size for all models
 
 const Product3D = () => {
-  const modelModules = import.meta.glob("/public/models/*.{glb,stl,obj}")
+  // const modelModules = import.meta.glob("/public/models/*.{glb,stl,obj}")
 
-  const modelOptions = Object.keys(modelModules).map(path => {
-    const fileName = path.split("/").pop()
-    const label = fileName
-      .split(".")
-      .slice(0, -1)
-      .join(".")
-      .replace(/_/g, " ")
-      .replace(/\b\w/g, c => c.toUpperCase())
-    return { value: fileName, label: `${label} (${fileName.split(".").pop().toUpperCase()})` }
-  })
-  const [selectedModel, setSelectedModel] = useState(modelOptions.length > 0 ? modelOptions[0].value : "")
+  // const modelOptions = Object.keys(modelModules).map(path => {
+  //   const fileName = path.split("/").pop()
+  //   const label = fileName
+  //     .split(".")
+  //     .slice(0, -1)
+  //     .join(".")
+  //     .replace(/_/g, " ")
+  //     .replace(/\b\w/g, c => c.toUpperCase())
+  //   return { value: fileName, label: `${label} (${fileName.split(".").pop().toUpperCase()})` }
+  // })
+  const modelOptions = [
+  { value: "car.glb", label: "Car (GLB)" },
+  { value: "car1.glb", label: "Car 1 (GLB)" },
+  { value: "cars.glb", label: "Cars (GLB)" },
+  { value: "small_van.glb", label: "Small Van (GLB)" },
+  { value: "yamaha_r1.glb", label: "Yamaha R1 (GLB)" }
+]
+const [selectedModel, setSelectedModel] = useState(modelOptions[0].value)
+
+ // const [selectedModel, setSelectedModel] = useState(modelOptions.length > 0 ? modelOptions[0].value : "")
   const canvasRef = useRef(null)
   const sceneRef = useRef(null)
   const cameraRef = useRef(null)
